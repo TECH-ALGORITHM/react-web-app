@@ -10,6 +10,8 @@ function Sidebar() {
     shipment: "",
     trackId: "",
   });
+
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,24 +19,33 @@ function Sidebar() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError(""); // Clear error on input change
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Check if trackId contains exactly 10 digits
+    if (!/^\d{10}$/.test(formData.trackId)) {
+      setError("Track ID must be exactly 10 digits.");
+      return;
+    }
+
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/submit",
+        "http://localhost:5000/api/shipments/submit",
         formData
       );
+
       alert(response.data);
-      // Redirect to BarcodeGenerator with all the form data
       navigate("/barcode", { state: formData });
     } catch (error) {
       console.error("There was an error submitting the form:", error);
       alert("There was an error submitting the form.");
     }
   };
+
   const isFieldFilled = (field) => formData[field] !== "";
+
   return (
     <div className="sidebar-container">
       <div className="sidebar">
@@ -76,7 +87,7 @@ function Sidebar() {
           <div className="form-group">
             <label htmlFor="trackId">Track ID</label>
             <input
-              type="text"
+              type="number"
               id="trackId"
               name="trackId"
               value={formData.trackId}
@@ -84,22 +95,35 @@ function Sidebar() {
               placeholder="Enter track ID"
             />
           </div>
-          <button type="submit">Submit</button>
+          {error && <p className="error-message">{error}</p>}
+          <button type="submit">SAVE</button>
         </form>
       </div>
       <div className="status-bar">
         <div
-          className={`status-item ${isFieldFilled("sender") ? "filled" : ""}`}
-        ></div>
+          className={`status-label ${isFieldFilled("sender") ? "filled" : ""}`}
+        >
+          Sender
+        </div>
         <div
-          className={`status-item ${isFieldFilled("receiver") ? "filled" : ""}`}
-        ></div>
+          className={`status-label ${
+            isFieldFilled("receiver") ? "filled" : ""
+          }`}
+        >
+          Receiver
+        </div>
         <div
-          className={`status-item ${isFieldFilled("shipment") ? "filled" : ""}`}
-        ></div>
+          className={`status-label ${
+            isFieldFilled("shipment") ? "filled" : ""
+          }`}
+        >
+          Shipment
+        </div>
         <div
-          className={`status-item ${isFieldFilled("trackId") ? "filled" : ""}`}
-        ></div>
+          className={`status-label ${isFieldFilled("trackId") ? "filled" : ""}`}
+        >
+          Track ID
+        </div>
       </div>
     </div>
   );

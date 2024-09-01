@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+.app-container {
+  display: flex;
+}
+
+.main-content {
+  width: 80%;
+  padding: 20px;
+  box-sizing: border-box;
+}

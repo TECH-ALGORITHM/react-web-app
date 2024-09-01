@@ -1,0 +1,17 @@
+.left-sidebar {
+  width: 20%;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.left-sidebar h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.left-sidebar p {
+  font-size: 16px;
+  margin: 10px 0;
+}
