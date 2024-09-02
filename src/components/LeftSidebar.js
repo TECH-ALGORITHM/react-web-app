@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import axios from "axios";
 import "./LeftSidebar.css";
 
@@ -25,6 +26,20 @@ function LeftSidebar() {
     <div className="left-sidebar">
       <h3>Shipments Overview</h3>
       <p>Total Shipments: {shipmentCount}</p>
+
+      <nav>
+        <ul>
+          <li>
+            <Link to="/sender-form">Sender</Link>
+          </li>
+          <li>
+            <Link to="/receiver-form">Receiver</Link>
+          </li>
+          <li>
+            <Link to="/shipment-form">Shipment</Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }

@@ -1,0 +1,73 @@
+/* SenderForm.css and ReceiverForm.css */
+
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-section {
+  width: 70%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.status-bar {
+  width: 25%;
+  padding: 20px;
+  border-left: 2px solid #e0e0e0;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.status-label {
+  margin: 12px 0;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff; /* Default to white text */
+  background-color: #f44336; /* Default to red background */
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.status-label.filled {
+  background-color: #4caf50; /* Green background when filled */
+  color: #fff;
+}
+
+.status-label:not(.filled):hover {
+  background-color: #e57373; /* Slightly lighter red on hover when not filled */
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+  }
+
+  .form-section,
+  .status-bar {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+
+  .status-bar {
+    border-left: none;
+    border-top: 2px solid #e0e0e0;
+  }
+
+  .status-label {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
