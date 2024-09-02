@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import "./ReceiverForm.css"; // Create a CSS file if not existing
+import "./ReceiverForm.css"; // Ensure this file exists
 
-function ReceiverForm() {
+function ReceiverForm({ onNext }) {
   const [receiverName, setReceiverName] = useState("");
   const [receiverAddress, setReceiverAddress] = useState("");
 
-  const isFieldFilled = (field) => field !== "";
+  const isFieldFilled = (field) => field.trim() !== "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log("Receiver Name:", receiverName);
     console.log("Receiver Address:", receiverAddress);
+
+    // Call the onNext function to move to the next form
+    if (onNext) {
+      onNext();
+    } else {
+      console.error("onNext function is not defined");
+    }
   };
 
   return (
@@ -37,7 +43,7 @@ function ReceiverForm() {
               required
             />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit">Next</button>
         </form>
       </div>
 

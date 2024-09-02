@@ -5,7 +5,7 @@ function SenderForm({ onNext }) {
   const [senderName, setSenderName] = useState("");
   const [senderAddress, setSenderAddress] = useState("");
 
-  const isFieldFilled = (field) => field !== "";
+  const isFieldFilled = (field) => field.trim() !== "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +13,11 @@ function SenderForm({ onNext }) {
     console.log("Sender Address:", senderAddress);
 
     // Call the onNext function to move to the next form
-    onNext();
+    if (onNext) {
+      onNext();
+    } else {
+      console.error("onNext function is not defined");
+    }
   };
 
   return (

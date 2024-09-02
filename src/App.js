@@ -7,6 +7,7 @@ import BarcodeGenerator from "./components/BarcodeGenerator";
 import SenderForm from "./components/SenderForm";
 import ReceiverForm from "./components/ReceiverForm";
 import ShipmentForm from "./components/ShipmentForm";
+
 import "./App.css";
 
 function App() {
